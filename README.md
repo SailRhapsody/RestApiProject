@@ -1,3 +1,8 @@
+- Добавить книгу с указанием авторов books.store
+- Получить все книги books.index
+- Выдать книгу читателю loans.store
+- Списать книгу books.destroy
+
 FAQ по установке
 
 sail up
