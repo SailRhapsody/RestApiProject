@@ -1,0 +1,238 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "LibraryAPI",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/": {},
+        "/api/books": {
+            "get": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Получить все книги",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Номер страницы",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "request": "GET",
+                    "description": "Get books"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            }
+        },
+        "/api/books/": {
+            "post": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Добавить книгу с указанием авторов",
+                "requestBody": {
+                    "request": "POST",
+                    "description": "Create book",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Понедельник начинается в субботу"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Но что страннее, что непонятнее всего, это то, как авторы могут брать подобные сюжеты, признаюсь, это уж совсем непостижимо, это точно… нет, нет, совсем не понимаю."
+                                            },
+                                            "published_at": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "example": "2023-10-04"
+                                            },
+                                            "authors": {
+                                                "type": "array, integers",
+                                                "example": "[1,2,3]"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Понедельник начинается в субботу"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Но что страннее, что непонятнее всего, это то, как авторы могут брать подобные сюжеты, признаюсь, это уж совсем непостижимо, это точно… нет, нет, совсем не понимаю."
+                                        },
+                                        "published_at": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2023-10-04"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/books/{book}": {
+            "get": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Get book",
+                "parameters": [
+                    {
+                        "name": "book",
+                        "in": "path",
+                        "description": "ID книги",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "request": "GET",
+                    "description": "Get book"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Update book, Under maintanance",
+                "requestBody": {
+                    "request": "Put",
+                    "description": "Update book"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Списать книгу",
+                "parameters": [
+                    {
+                        "name": "book",
+                        "in": "path",
+                        "description": "ID книги",
+                        "required": true,
+                        "example": 5
+                    }
+                ],
+                "requestBody": {
+                    "request": "Delete",
+                    "description": "Delete book"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            }
+        },
+        "/api/loans/": {
+            "post": {
+                "tags": [
+                    "Loans"
+                ],
+                "summary": "Выдать книгу",
+                "requestBody": {
+                    "request": "POST",
+                    "description": "Create loan",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "book_id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "reader_id": {
+                                                "type": "integer",
+                                                "example": 2
+                                            },
+                                            "return_date": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "example": "2023-10-04"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "book_id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "reader_id": {
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "return_date": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2023-10-04"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
