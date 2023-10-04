@@ -53,6 +53,8 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
+        $book = Book::query()->find(308);
+        $book->authors()->detach();
         $book->delete();
 
         return response()->json([
