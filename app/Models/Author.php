@@ -17,4 +17,11 @@ class Author extends Model
     {
         return $this->belongsToMany(Book::class, 'author_book');
     }
+
+    public static function indexAuthors(){
+        $author = Author::query()->paginate(20);
+        $author->appends(request()->query());
+
+        return $author;
+    }
 }

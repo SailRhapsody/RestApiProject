@@ -13,7 +13,7 @@ class LoanController extends Controller
 {
     public function index()
     {
-        $loans = Loan::all();
+        $loans = Loan::indexLoans();
 
         return LoanResource::collection($loans);
     }
@@ -22,29 +22,16 @@ class LoanController extends Controller
     {
         $data = $request->validated();
 
-        $book = Book::query()->findOrFail($data['book_id']);
-        if (!$book->isAvailableForLoan()) {
-
-            return response()->json(['message' => 'The book is not available for loan.'], 422);
-        }
-
-        $loan = Loan::query()->create([
-            'book_id'   => $book->id,
-            'reader_id' => $data['reader_id'],
-            'loan_date' => now(),
-        ]);
-
-        return response()->json(['message' => 'Book loaned successfully.', 'loan_id' => $loan->id]);
+        return Loan::storeLoan($data);
     }
 
     public function show(Loan $loan)
     {
-        //
+        return LoanResource::make($loan);
     }
 
     public function update(UpdateRequest $request, Loan $loan)
     {
-        //
     }
 
     public function destroy(Loan $loan)

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Reader\ReaderResource;
+use App\Models\Reader;
 use Illuminate\Http\Request;
 
 class ReaderController extends Controller
@@ -14,25 +16,16 @@ class ReaderController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Reader $reader)
     {
-        //
+        return ReaderResource::make($reader);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         //
