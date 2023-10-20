@@ -39,6 +39,7 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
+        //test
         Book::destroyBook($book);
 
         return response()->json([
