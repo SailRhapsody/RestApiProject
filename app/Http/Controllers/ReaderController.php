@@ -15,6 +15,7 @@ class ReaderController extends Controller
     {
         //
         //
+        //
     }
 
     public function store(Request $request)
