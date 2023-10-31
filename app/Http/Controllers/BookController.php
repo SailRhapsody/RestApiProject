@@ -27,6 +27,7 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
+        //here is test show
         return BookResource::make($book);
     }
 

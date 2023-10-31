@@ -18,7 +18,7 @@ class AuthorController extends Controller
 
     public function store(Request $request)
     {
-        //
+        //here is test store
     }
 
     public function show(Author $author)
